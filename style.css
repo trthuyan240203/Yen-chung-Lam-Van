@@ -384,8 +384,7 @@ footer .logo-text {
 }
 
 footer .logo-img {
-    filter: grayscale(1) brightness(2); /* Biến logo xanh nền đen thành logo trắng nền đen */
-    mix-blend-mode: screen; /* Kỹ thuật triệt tiêu nền đen tuyệt đối */
+    filter: grayscale(1) invert(1) brightness(2); /* Biến logo nên trang thanh mau trang tren nen den */
 }
 
 .footer-grid {
