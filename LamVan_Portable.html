@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lam Vân | Nối Nguồn Tinh Hoa (Portable)</title>
+    <meta name="description" content="Phiên bản độc lập của Portfolio Dự án Yến chưng Lam Vân.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+/* --- Tích hợp style.css --- */
+@font-face {
+    font-family: 'Be Vietnam Pro';
+    src: url('BeVietnamPro-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Be Vietnam Pro';
+    src: url('BeVietnamPro-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MJ Angela';
+    src: url('MJ-Angela-Angela.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --primary: #0033CC;
+    --accent: #D4AF37;
+    --bg-cream: #FAF9F6;
+    --text-dark: #0A1128;
+    --text-light: #4A4E69;
+    --white: #ffffff;
+    --shadow: 0 20px 40px rgba(0, 51, 204, 0.05);
+    --transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    background-color: var(--bg-cream);
+    color: var(--text-dark);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, .logo {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+}
+
+.script-font {
+    font-family: 'MJ Angela', cursive;
+    text-transform: none;
+    font-weight: 400;
+}
+
+a { text-decoration: none; color: inherit; transition: var(--transition); }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+.container { max-width: 1300px; margin: 0 auto; padding: 0 3rem; }
+
+header {
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+    min-height: 90px; display: flex; align-items: center;
+    transition: var(--transition);
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(25px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+header.scrolled {
+    min-height: 70px;
+    background: rgba(250, 249, 246, 0.95);
+    box-shadow: 0 10px 30px rgba(0, 51, 204, 0.08);
+}
+
+.nav { width: 100%; display: flex; justify-content: space-between; align-items: center; }
+.logo-container { display: flex; align-items: center; gap: 1rem; }
+.logo-img { height: 48px; mix-blend-mode: screen; }
+.logo-text { font-size: 1.6rem; color: var(--primary); }
+.nav-links { display: flex; gap: 2rem; }
+.nav-links a { font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; position: relative; padding: 0.5rem 0; }
+.nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--primary); transition: var(--transition); }
+.nav-links a:hover::after { width: 100%; }
+
+.hero { min-height: 100vh; display: flex; align-items: center; position: relative; padding-top: 220px; background: #ffffff; }
+.hero-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 4rem; }
+.hero h1 { font-size: 5.5rem; line-height: 1; margin-bottom: 2rem; color: var(--primary); }
+.hero p { font-size: 1.2rem; margin-bottom: 3rem; color: var(--text-light); max-width: 500px; }
+.hero-image-wrap { position: relative; border-radius: 40px; overflow: hidden; box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.1); }
+.hero-image-wrap img { width: 100%; transition: transform 10s ease; }
+.hero-image-wrap:hover img { transform: scale(1.1); }
+.btn { display: inline-block; padding: 1.2rem 3rem; background-color: var(--primary); color: var(--white); font-weight: 800; border-top-right-radius: 20px; border-bottom-left-radius: 20px; border: none; cursor: pointer; transition: var(--transition); }
+.btn:hover { background-color: var(--text-dark); transform: translateY(-8px) scale(1.02); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); }
+
+section { padding: 10rem 0; }
+.section-title { margin-bottom: 6rem; }
+.section-title span { color: var(--accent); font-family: 'MJ Angela'; font-size: 1.8rem; display: block; margin-bottom: 0.5rem; }
+.section-title h2 { font-size: 3.5rem; color: var(--primary); }
+
+.features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; }
+.feature-card { background: var(--white); padding: 4rem 3rem; border-radius: 30px; border: 1px solid #f0f0f0; transition: var(--transition); }
+.feature-card:hover { border-color: var(--primary); box-shadow: var(--shadow); }
+.feature-card .icon { font-size: 3rem; color: var(--accent); margin-bottom: 2rem; }
+.feature-card h4 { font-size: 1.8rem; margin-bottom: 1.5rem; }
+
+.product-showcase { background-color: var(--bg-cream); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+.contact-info h3 { font-size: 3rem; margin-bottom: 2rem; color: var(--primary); }
+.contact-form { background: var(--white); padding: 4rem; border-radius: 40px; box-shadow: var(--shadow); }
+.form-group { margin-bottom: 2rem; }
+.form-group label { display: block; font-weight: 800; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 0.5rem; color: var(--primary); }
+.form-group input, .form-group textarea { width: 100%; padding: 1.2rem; border: none; border-bottom: 2px solid #eee; background: transparent; font-family: inherit; font-size: 1rem; transition: var(--transition); }
+.form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary); }
+
+footer { background: var(--text-dark); color: rgba(255, 255, 255, 0.6); padding: 8rem 0 4rem; }
+footer .logo-text { color: var(--white); }
+footer .logo-img { filter: grayscale(1) brightness(2); mix-blend-mode: screen; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; margin-bottom: 4rem; }
+footer h4 { color: var(--white); margin-bottom: 2rem; font-size: 1.2rem; }
+footer ul li { margin-bottom: 1rem; }
+.copyright { border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 4rem; text-align: center; font-size: 0.9rem; }
+
+@media (max-width: 1200px) { .hero h1 { font-size: 4rem; } }
+@media (max-width: 1024px) { .nav-links { display: none; } }
+@media (max-width: 992px) { .hero-grid, .contact-grid { grid-template-columns: 1fr; } .features-grid { grid-template-columns: repeat(2, 1fr); } .hero { padding: 14rem 0 6rem; } }
+
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity 1s cubic-bezier(0.19, 1, 0.22, 1), transform 1s cubic-bezier(0.19, 1, 0.22, 1); }
+.reveal.active { opacity: 1; transform: translateY(0); }
+
+.admin-panel { position: fixed; bottom: 2rem; right: 2rem; z-index: 10000; display: flex; gap: 1rem; padding: 0.5rem; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(20px); border-radius: 50px; border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); }
+.admin-btn { padding: 1rem 2rem; border-radius: 50px; border: none; background: var(--primary); color: white; font-family: 'Be Vietnam Pro', sans-serif; font-weight: 800; font-size: 0.8rem; cursor: pointer; display: flex; align-items: center; gap: 0.8rem; transition: var(--transition); }
+.admin-btn.secondary { background: var(--accent); }
+.admin-btn:hover { transform: translateY(-5px); filter: brightness(1.1); }
+.admin-btn.active { background: #ff4757; }
+[contenteditable="true"], .editable-img { outline: 2px dashed var(--accent); outline-offset: 5px; cursor: pointer; transition: var(--transition); }
+.editable-img:hover { filter: brightness(0.8) sepia(0.3) hue-rotate(-50deg); transform: scale(1.02); }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <div class="container nav">
+            <div class="logo-container">
+                <img src="logo_final_black.png" alt="Logo Lam Vân" class="logo-img">
+                <span class="logo-text">LAM VÂN</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#hero">Trang chủ</a></li>
+                <li><a href="#about">Dự án</a></li>
+                <li><a href="#products">Sản phẩm</a></li>
+                <li><a href="#tech">Quy trình</a></li>
+                <li><a href="#contact">Liên hệ</a></li>
+            </ul>
+            <a href="#contact" class="btn" style="padding: 0.8rem 2rem; border-top-right-radius: 12px; border-bottom-left-radius: 12px; font-size: 0.8rem;">HỢP TÁC</a>
+        </div>
+    </header>
+
+    <section id="hero" class="hero">
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <div class="reveal">
+                    <span class="script-font" style="font-size: 2rem; color: var(--accent);">Nối Nguồn Tinh Hoa</span>
+                    <h1>KẾ THỪA<br>DI SẢN</h1>
+                    <p>Lam Vân mang đến dòng yến chưng sẵn cao cấp với 50% tổ yến thiên nhiên nguyên chất, kết hợp cùng các thảo dược quý hiếm từ thiên nhiên.</p>
+                    <a href="#products" class="btn">XEM BỘ SƯU TẬP</a>
+                </div>
+            </div>
+            <div class="hero-image-wrap reveal">
+                <img src="gen-h-z7690715200419_f9c5e2f143318909310f4d9d8c5a2096.jpg" alt="Bộ sưu tập Yến chưng Lam Vân">
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title reveal">
+                <span class="script-font">Câu chuyện thương hiệu</span>
+                <h2>SỰ TINH TẾ TỪ CỐT CÁCH</h2>
+            </div>
+            <div class="hero-grid">
+                <div class="hero-image-wrap reveal">
+                    <img src="gen-h-z7690715200418_bf038b9fb975c57a440075a1e341a2de.jpg" alt="Bao bì dự án Lam Vân">
+                </div>
+                <div class="hero-text reveal" style="padding-left: 2rem;">
+                    <h3>Di Sản Cửu Vân Long</h3>
+                    <p>Kế thừa từ nền tảng uy tín của Công ty TNHH Yến Sào Cửu Vân Long, dự án Lam Vân được sinh ra để định nghĩa lại sự tiện lợi của thực phẩm Wellness cho thế hệ mới.</p>
+                    <div style="display: flex; gap: 2rem; margin-top: 2rem;">
+                        <div>
+                            <h4 style="color: var(--primary); font-size: 2.5rem;">50%</h4>
+                            <p style="font-size: 0.8rem; font-weight: 800;">TỔ YẾN TƯƠI</p>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--primary); font-size: 2.5rem;">100%</h4>
+                            <p style="font-size: 0.8rem; font-weight: 800;">TỰ NHIÊN</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="product-showcase">
+        <div class="container">
+            <div class="section-title reveal" style="text-align: center;">
+                <span class="script-font">Bộ sưu tập tinh hoa</span>
+                <h2>DANH MỤC SẢN PHẨM</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card reveal">
+                    <i class="fas fa-magic icon"></i>
+                    <h4>Đông Trùng Hạ Thảo</h4>
+                    <p>Tăng cường hệ miễn dịch, bồi bổ sức khỏe toàn diện với sợi yến dầy và dai.</p>
+                </div>
+                <div class="feature-card reveal">
+                    <i class="fas fa-sun icon"></i>
+                    <h4>Saffron Nhụy Hoa</h4>
+                    <p>Dưỡng nhan, cải thiện giấc ngủ và mang lại làn da đầy sức sống từ bên trong.</p>
+                </div>
+                <div class="feature-card reveal">
+                    <i class="fas fa-mountain icon"></i>
+                    <h4>Nhân Sâm Cổ Thụ</h4>
+                    <p>Tăng cường sinh lực, giảm căng thẳng mệt mỏi cho ngày dài năng động.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tech" class="tech">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info reveal">
+                    <span class="script-font">Chất lượng cam kết</span>
+                    <h3>QUY TRÌNH<br>HIỆN ĐẠI</h3>
+                    <p>Mỗi hũ yến Lam Vân (70ml) đều trải qua quy trình chưng cất khử trùng công nghệ cao, giữ nguyên giá trị dinh dưỡng và hương vị tự nhiên của biển khơi.</p>
+                </div>
+                <div class="hero-image-wrap reveal">
+                    <img src="gen-h-z7690715200420_7703f0a0f57f1031e3091bc35107dd8a.jpg" alt="Quy trình đóng gói Lam Vân">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info reveal">
+                    <span class="script-font">Kết nối với chúng tôi</span>
+                    <h3>KHỞI ĐẦU CHƯƠNG MỚI</h3>
+                    <p>Nếu bạn quan tâm đến cơ hội hợp tác hoặc muốn trải nghiệm sản phẩm, hãy để lại thông tin bên dưới.</p>
+                </div>
+                <form class="contact-form reveal">
+                    <div class="form-group">
+                        <label>Họ và tên</label>
+                        <input type="text" placeholder="Nguyễn Văn A" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Số điện thoại</label>
+                        <input type="tel" placeholder="090 xxx xxxx" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Thông điệp</label>
+                        <textarea rows="4" placeholder="Tôi muốn tìm hiểu về..."></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">GỬI LIÊN HỆ</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="logo-container" style="margin-bottom: 2rem;">
+                        <img src="logo_final_black.png" alt="Logo Lam Vân" class="logo-img">
+                        <span class="logo-text">LAM VÂN</span>
+                    </div>
+                    <p>Số 10 ngõ 81, đường Nguyễn Chí Thanh, Láng Hạ, Đống Đa, Hà Nội</p>
+                    <p>Email: cskh.lamvanfinest@gmail.com</p>
+                </div>
+                <div>
+                    <h4>LIÊN KẾT</h4>
+                    <ul>
+                        <li><a href="#hero">Trang chủ</a></li>
+                        <li><a href="#about">Dự án</a></li>
+                        <li><a href="#products">Sản phẩm</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>ĐỘI NGŨ</h4>
+                    <p>GVHD: Nguyễn Văn Hiếu</p>
+                    <p>SV: Nguyễn Ngọc Yến Nhi</p>
+                    <p>SV: Trương Thuý An</p>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2026 LAM VAN - NỐI NGUỒN TINH HOA. DESIGNED FOR EXCELLENCE.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Admin Panel for Live Editing -->
+    <div id="admin-panel" class="admin-panel">
+        <button id="toggle-edit" class="admin-btn"><i class="fas fa-edit"></i> Bật Chỉnh Sửa</button>
+        <button id="download-code" class="admin-btn secondary" style="display: none;"><i class="fas fa-download"></i> Tải về file đã sửa</button>
+        <button id="copy-code" class="admin-btn" style="display: none; background: #57606f;"><i class="fas fa-copy"></i> Sao chép Mã HTML</button>
+    </div>
+
+    <!-- Hidden File Input for Image Uploads -->
+    <input type="file" id="image-editor-input" style="display: none;" accept="image/*">
+
+    <script>
+/* --- Tích hợp script.js --- */
+document.addEventListener('DOMContentLoaded', () => {
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) { header.classList.add('scrolled'); } 
+        else { header.classList.remove('scrolled'); }
+    });
+
+    const reveals = document.querySelectorAll('.reveal');
+    const revealOnScroll = () => {
+        const windowHeight = window.innerHeight;
+        reveals.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            if (elementTop < windowHeight - 150) { element.classList.add('active'); }
+        });
+    };
+    revealOnScroll();
+    window.addEventListener('scroll', revealOnScroll);
+
+    const contactForm = document.querySelector('.contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Cảm ơn bạn đã quan tâm đến dự án Lam Vân! Chúng tôi sẽ liên hệ lại với bạn sớm nhất.');
+            contactForm.reset();
+        });
+    }
+
+    const toggleEditBtn = document.getElementById('toggle-edit');
+    const copyCodeBtn = document.getElementById('copy-code');
+    const downloadCodeBtn = document.getElementById('download-code');
+    let isEditMode = false;
+
+    if (toggleEditBtn) {
+        toggleEditBtn.addEventListener('click', () => {
+            isEditMode = !isEditMode;
+            const editables = document.querySelectorAll('h1, h2, h3, h4, h5, p, span, .btn, footer p, .copyright');
+            editables.forEach(el => {
+                if (!el.classList.contains('admin-btn')) { el.contentEditable = isEditMode; }
+            });
+
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                if (isEditMode) {
+                    img.classList.add('editable-img');
+                    img.addEventListener('click', handleImageEdit);
+                } else {
+                    img.classList.remove('editable-img');
+                    img.removeEventListener('click', handleImageEdit);
+                }
+            });
+
+            if (isEditMode) {
+                toggleEditBtn.innerHTML = '<i class="fas fa-check"></i> Xong Chỉnh Sửa';
+                toggleEditBtn.classList.add('active');
+                if (downloadCodeBtn) downloadCodeBtn.style.display = 'flex';
+                copyCodeBtn.style.display = 'flex';
+            } else {
+                toggleEditBtn.innerHTML = '<i class="fas fa-edit"></i> Bật Chỉnh Sửa';
+                toggleEditBtn.classList.remove('active');
+                if (downloadCodeBtn) downloadCodeBtn.style.display = 'none';
+                copyCodeBtn.style.display = 'none';
+            }
+        });
+    }
+
+    let currentEditingImg = null;
+    const imageEditorInput = document.getElementById('image-editor-input');
+
+    function handleImageEdit(e) {
+        e.preventDefault();
+        currentEditingImg = e.target;
+        imageEditorInput.click();
+    }
+
+    if (imageEditorInput) {
+        imageEditorInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    const base64String = event.target.result;
+                    if (currentEditingImg) {
+                        currentEditingImg.src = base64String;
+                        if (currentEditingImg.classList.contains('logo-img')) {
+                            document.querySelectorAll('.logo-img').forEach(logo => { logo.src = base64String; });
+                        }
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
+    if (downloadCodeBtn) {
+        downloadCodeBtn.addEventListener('click', () => {
+            const editPanel = document.getElementById('admin-panel');
+            const fileInput = document.getElementById('image-editor-input');
+            editPanel.style.display = 'none';
+            if (fileInput) fileInput.remove();
+            const htmlContent = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+            if (fileInput) document.body.appendChild(fileInput);
+            editPanel.style.display = 'flex';
+
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'LamVan_Portfolio_Updated.html';
+            a.click();
+            URL.revokeObjectURL(url);
+            alert('Website đã được tải xuống hoàn tất!');
+        });
+    }
+
+    if (copyCodeBtn) {
+        copyCodeBtn.addEventListener('click', () => {
+            const editPanel = document.getElementById('admin-panel');
+            const fileInput = document.getElementById('image-editor-input');
+            editPanel.style.display = 'none';
+            if (fileInput) fileInput.remove();
+            const htmlContent = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+            if (fileInput) document.body.appendChild(fileInput);
+            editPanel.style.display = 'flex';
+            navigator.clipboard.writeText(htmlContent).then(() => {
+                alert('Mã HTML đã được sao chép! Dán lại vào file này để lưu.');
+            });
+        });
+    }
+});
+    </script>
+</body>
+</html>
