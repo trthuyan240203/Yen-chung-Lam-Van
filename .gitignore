@@ -2,12 +2,6 @@
 .gemini/
 brain/
 artifacts/
-*.webp
-*.png
-*.jpg
-!gen-h-*.jpg
-!logo_final_black.png
-!product_mockup_*.png
 
 # Standard OS files
 Thumbs.db
